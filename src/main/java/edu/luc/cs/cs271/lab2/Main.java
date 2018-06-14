@@ -10,7 +10,7 @@ public class Main {
   public static void main(final String[] args) {
     final Team t1 = new Team("USA", "Klinsmann", 500);
     final Team t2 = new Team("Chile", "Pizzi", 600);
-    final Team t3 = new Team("Germany", "Löw", 700);
+    final Team t3 = new Team("Germany", "Low", 700);
     final Team[] array = {t1, t2, t3};
     final List<Team> list = Arrays.asList(array);
 
@@ -20,6 +20,12 @@ public class Main {
     System.out.print("Enter name to search: ");
     final String key = keyboard.nextLine();
     System.out.println("Looking for team " + key);
+    if(keyboard.equals("USA") || keyboard.equals("Chile") || keyboard.equals("Germany") ) {
+      System.out.println("Team FOUND!!!");
+      System.out.println("Continue?");
+    }else{
+      System.out.println("Please specify other amount or search other team");
+    }
 
     // Runs the linear search on the array
     final Optional<Integer> index1 = Search.findTeamPosition(array, key);
@@ -51,13 +57,35 @@ public class Main {
       final int pos = index.get();
       final Team team = array[pos];
       // TODO DRY - eliminate this code duplication
-      System.out.println("Name: " + team.getName());
+     /* System.out.println("Name: " + team.getName());
       System.out.println("Head coach: " + team.getHeadcoach());
       System.out.println("Funding: " + team.getFunding());
       System.out.println("Array index: " + pos);
-      System.out.println("Ranking: " + (pos + 1));
+      System.out.println("Ranking: " + (pos + 1));*/
     } else {
       System.out.println("Not Found!");
+      System.out.println("Please search for coach");
+      coachSearch();
+    }
+  }
+
+  private static void coachSearch() {
+    System.out.println("Enter coach name: ");
+    Scanner keyboard = new Scanner(System.in);
+    if(keyboard.equals("Klinsmann")){
+      System.out.println("COACH: Klinsmann Found! \n" +
+              "Team: USA, Rank:1 \n" +
+              "Funding 500");
+      if(keyboard.equals("Pizzi")){
+        System.out.println("COACH: Pizzi Found! \n" +
+                "Team: Chile, Rank:2 \n" +
+                "Funding: 600");
+        if(keyboard.equals("Low")){
+          System.out.println("COACH: Low Found! \n" +
+                  "Team: Germany, Rank: 1 \n" +
+                  "Funding: 700");
+        }
+      }
     }
   }
 
@@ -77,4 +105,5 @@ public class Main {
       System.out.println("Not Found!");
     }
   }
+
 }
